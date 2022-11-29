@@ -29,6 +29,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
   gem 'pry-rails'
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -38,3 +39,7 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'devise'
+gem 'devise-i18n'
+gem 'rexml'
