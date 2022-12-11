@@ -21,11 +21,16 @@
     <%= form.datetime_select :deadline, include_blank: true %>
   </div>
 
-  <div class="label">
-    <%= form.label :name %>
+  <div class="tag">
+    <%= form.label :tag %>
     <label for="tag_check.">
       <%= form.collection_select :tag_ids, Tag.all, :id, :name %>
     </label>
+  </div>
+
+  <div class = "status">
+    <%= form.label :status %>
+    <%= form.select :status, Post.statuses.keys.to_a %>
   </div>
 
   <div class="actions">

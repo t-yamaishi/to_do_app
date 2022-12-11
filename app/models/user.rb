@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
   def admin_destroy_check
     if User.where(admin: true).count == 1 && self.admin == true
       throw(:abort)
