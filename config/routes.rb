@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   get 'users/show'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

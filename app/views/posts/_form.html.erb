@@ -21,6 +21,13 @@
     <%= form.datetime_select :deadline, include_blank: true %>
   </div>
 
+  <div class="label">
+    <%= form.label :name %>
+    <label for="tag_check.">
+      <%= form.collection_select :tag_ids, Tag.all, :id, :name %>
+    </label>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings, source: :tag
   validates :content, {presence: true}
   enum status: {未実施:0, 実施:1}
 

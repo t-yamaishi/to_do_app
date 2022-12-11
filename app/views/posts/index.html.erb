@@ -19,6 +19,7 @@
                   include_blank: true %>〜
       <%= f.date_field :deadline_lteq,
                   include_blank: true %>
+      <%= f.collection_select :taggings_tag_id_eq, Tag.all, :id, :name, include_blank: true %>
       <%= f.submit "検索" %>
     <% end %>
 
@@ -30,6 +31,11 @@
         <% else %>
           <td><%= post.deadline %></td>
         <% end %>
+        <td class="label">
+          <% post.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        </td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
