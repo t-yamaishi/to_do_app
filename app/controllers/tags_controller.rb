@@ -1,5 +1,8 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :admin_user
+
 
   # GET /tags
   def index
@@ -54,5 +57,11 @@ class TagsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tag_params
       params.require(:tag).permit(:name)
+    end
+
+    def admin_user
+      unless current_user.admin?
+        redirect_to user_path(current_user.id)
+      end
     end
 end
