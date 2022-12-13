@@ -53,7 +53,7 @@ class PostsController < ApplicationController
 
   private
     def search
-      @q = Post.ransack(params[:q])
+      @q = current_user.posts.ransack(params[:q])
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
