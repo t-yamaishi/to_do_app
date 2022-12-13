@@ -28,6 +28,13 @@ group :development, :test do
   gem 'faker'
   gem 'launchy'
   gem 'rexml'
+  gem 'capistrano', '3.16.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
@@ -55,3 +62,4 @@ gem 'cancancan'
 gem 'ransack'
 gem 'rexml'
 gem 'whenever', require: false
+gem 'unicorn'
