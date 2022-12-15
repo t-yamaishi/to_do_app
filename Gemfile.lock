@@ -372,6 +372,7 @@ DEPENDENCIES
   rexml
   rspec-rails
   sass-rails (>= 6)
+  sassc-rails
   selenium-webdriver (>= 4.0.0.rc1)
   spring
   spring-commands-rspec

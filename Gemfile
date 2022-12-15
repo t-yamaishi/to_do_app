@@ -63,3 +63,4 @@ gem 'ransack'
 gem 'rexml'
 gem 'whenever', require: false
 gem 'unicorn'
+gem 'sassc-rails'
