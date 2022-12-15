@@ -10,7 +10,7 @@ class Post < ApplicationRecord
     Post.all.each do |post|
       now = Time.now
       dead = post.deadline
-      if post.deadline? || post.status = 0
+      if post.deadline? || (post.status = 0)
         if (now.strftime("%Y-%m-%d %H:%M")) == (dead.strftime("%Y-%m-%d %H:%M"))
           ContactMailer.contact_mail(post).deliver
         end
