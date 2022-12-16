@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+      user: ユーザー
+    attributes:
+      post:
+        content: todo内容
+        status: 実施/未実施
+        deadline: 締切日時
+      tag:
+        name: 名前

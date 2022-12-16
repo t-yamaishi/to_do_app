@@ -1,0 +1,4 @@
+ja:
+  posts:
+    edit: # app/views/users/new.html.erbを表す
+      Back: "戻る"
