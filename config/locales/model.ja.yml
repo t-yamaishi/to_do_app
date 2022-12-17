@@ -5,7 +5,7 @@ ja:
       user: ユーザー
     attributes:
       post:
-        content: todo内容
+        content: ToDo内容
         status: 実施/未実施
         deadline: 締切日時
       tag:

@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      redirect_to @post, notice: "Post was successfully created."
+      redirect_to @post, notice: "新しいToDoが作成されました"
     else
       render :new
     end
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated."
+      redirect_to @post, notice: "ToDoが編集されました"
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: "Post was successfully destroyed."
+    redirect_to posts_url, notice: "ToDoが削除されました。"
   end
 
 
