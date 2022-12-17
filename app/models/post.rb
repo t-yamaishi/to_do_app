@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   def self.deadline_check
     Post.all.each do |post|
-      if post.deadline? || (post.status = 0)
+      if post.deadline? && (post.status = 0)
         if (Time.now.strftime("%Y-%m-%d %H:%M")) == (post.deadline.strftime("%Y-%m-%d %H:%M"))
           ContactMailer.contact_mail(post).deliver
         end

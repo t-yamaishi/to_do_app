@@ -1,11 +1,11 @@
 
 
-<h1>todo一覧</h1>
+<h1>ToDo一覧</h1>
 
 <table>
   <thead>
     <tr>
-      <th>todo内容一覧</th>
+      <th>ToDo内容一覧</th>
       <th><%= sort_link(@q, :deadline, "締切日時") %></th>
       <th>タグ</th>
       <th>実施/未実施</th>
@@ -15,7 +15,7 @@
 
   <tbody>
     <%= search_form_for @q, url: posts_path do |f| %>
-      todo内容:<%= f.text_field :content_cont, placeholder: 'todo内容を入力' %>
+      ToDo内容:<%= f.text_field :content_cont, placeholder: 'todo内容を入力' %>
       締切日:<%= f.date_field :deadline_gteq,
                   include_blank: true %>〜
       <%= f.date_field :deadline_lteq,
@@ -40,7 +40,7 @@
         </td>
         <td><%= post.status %></td>
         <td><%= link_to '編集', edit_post_path(post) %></td>
-        <td><%= link_to '削除', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '削除', post, method: :delete, data: { confirm: '削除してもよろしいでしょうか' } %></td>
       </tr>
     <% end %>
   </tbody>

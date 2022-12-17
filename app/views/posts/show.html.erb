@@ -1,7 +1,15 @@
 
 <p>
-  <strong>todo内容:</strong>
+  <strong>ToDo内容:</strong>
   <%= @post.content %>
+  <strong>締切日時:</strong>
+  <%= l @post.deadline %>
+  <strong>タグ:</strong>
+  <% @post.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+  <strong>実施/未実施:</strong>
+  <%= @post.status %>
 </p>
 
 <%= link_to '編集', edit_post_path(@post) %> |
