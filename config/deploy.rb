@@ -18,6 +18,8 @@ set :rbenv_type, :system
 
 set :log_level, :info
 
+set :whenever_roles, ->{ :app }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
@@ -53,6 +55,8 @@ namespace :deploy do
     end
   end
 end
+
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
