@@ -18,7 +18,7 @@ set :rbenv_type, :system
 
 set :log_level, :info
 
-set :whenever_roles, ->{ :app }
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 namespace :deploy do
   desc 'Restart application'
