@@ -27,6 +27,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'rspec-rails'
+  gem 'pry-rails'
   gem 'spring-commands-rspec'
   gem 'launchy'
   gem 'rexml'
@@ -37,6 +38,7 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -44,7 +46,6 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
-  gem 'pry-rails'
   gem 'letter_opener_web'
 end
 
