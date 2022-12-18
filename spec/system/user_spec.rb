@@ -24,8 +24,8 @@ RSpec.describe 'ユーザー機能', type: :system do
       end
     end
   end
-  describe 'ユーザー登録機能' do
-    context '一般ユーザー' do
+  describe 'ユーザー機能' do
+    context 'ユーザー作成、詳細機能、編集機能' do
       it 'ユーザー新規作成後、詳細画面が表示、編集ができる' do
         visit new_user_registration_path
         fill_in '名前', with: 'z'

@@ -4,9 +4,9 @@ RSpec.describe 'todo作成機能', type: :system do
     @admin_user = FactoryBot.create(:user)
     FactoryBot.create(:tag)
   end
-  describe '新規todo登録、編集、削除' do
-    context 'adminユーザー' do
-      it 'todo登録、編集、削除' do
+  describe 'todo機能' do
+    context '登録、編集、削除' do
+      it 'todo登録、編集、削除ができる' do
         visit new_user_session_path
         fill_in 'Eメール', with: 'xxx@xxx.com'
         fill_in 'パスワード', with: 'xxx@xxx.com'
@@ -35,8 +35,8 @@ RSpec.describe 'todo作成機能', type: :system do
   end
 
   describe '検索機能' do
-    context '一般ユーザー' do
-      it '検索条件を全て指定する'do
+    context '検索条件を全て指定する' do
+      it '検索結果が表示される'do
         visit new_user_session_path
         fill_in 'Eメール', with: 'xxx@xxx.com'
         fill_in 'パスワード', with: 'xxx@xxx.com'
@@ -78,6 +78,28 @@ RSpec.describe 'todo作成機能', type: :system do
         expect(page).to have_content 'ToDo一覧'
         visit post_path(@post)
         expect(page).to have_content 'ToDo一覧'
+      end
+    end
+  end
+
+  describe '投稿ソート機能' do
+    before do
+      @post=Post.create(content: "a",deadline: Time.zone.now, status: "未実施", user_id: @admin_user.id)
+      @post=Post.create(content: "b",deadline: 1.day.from_now, status: "未実施", user_id: @admin_user.id)
+    end
+    context 'ソート機能(締切日時)' do
+      it '順番が降順になる'do
+        visit new_user_session_path
+        fill_in 'Eメール', with: 'xxx@xxx.com'
+        fill_in 'パスワード', with: 'xxx@xxx.com'
+        click_button 'ログイン'
+        click_on '締切日時'
+        click_on '締切日時'
+        sleep 3
+        post_list = all('.name')
+        sleep 2
+        expect(post_list[0]).to have_content "b"
+        expect(post_list[1]).to have_content "a"
       end
     end
   end
