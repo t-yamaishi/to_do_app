@@ -36,7 +36,6 @@ class PostsController < ApplicationController
 
   end
 
-  # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
       redirect_to @post, notice: "ToDoが編集されました"
@@ -45,7 +44,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
   def destroy
     @post.destroy
     redirect_to posts_url, notice: "ToDoが削除されました。"
