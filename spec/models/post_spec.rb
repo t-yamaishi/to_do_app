@@ -11,4 +11,12 @@ RSpec.describe 'Postモデル', type: :model do
       end
     end
   end
+  describe 'todo登録' do
+    context '入力に不足がない時' do
+      it 'todo登録が成功する' do
+        post=Post.new(content: "a", status: "未実施", user_id: @admin_user.id)
+        expect(post).to be_valid
+      end
+    end
+  end
 end

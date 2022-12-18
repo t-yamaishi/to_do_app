@@ -28,4 +28,15 @@ RSpec.describe 'Userモデル', type: :model do
       end
     end
   end
+
+  describe 'ユーザー登録テスト' do
+    context '入力に不足がない時' do
+      it 'ユーザー登録できる' do
+        user=User.new(name: "z", email: "zzz@zzz.com", password: "1qazxsw2")
+        expect(user).to be_valid
+      end
+    end
+  end
+
+
 end
