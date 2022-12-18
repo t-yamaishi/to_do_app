@@ -2,26 +2,28 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
-  # GET /posts or /posts.json
+
   def index
     search
     @posts = @q.result
   end
 
-  # GET /posts/1 or /posts/1.json
   def show
+    unless @post.user_id == current_user.id
+      redirect_to posts_path
+    end
   end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
   def edit
+    unless @post.user_id == current_user.id
+      redirect_to posts_path
+    end
   end
 
-  # POST /posts
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
