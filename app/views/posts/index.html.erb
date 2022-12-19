@@ -39,8 +39,8 @@
           <% end %>
         </td>
         <td><%= post.status %></td>
-        <td><%= link_to '編集', edit_post_path(post) %></td>
-        <td><%= link_to '削除', post, method: :delete, data: { confirm: '削除してもよろしいでしょうか' } %></td>
+        <td><%= link_to '編集', edit_post_path(post) ,class: "btn btn-sm btn-success"%></td>
+        <td><%= link_to '削除', post, class: "btn btn-sm btn-danger", method: :delete, data: { confirm: '削除してもよろしいでしょうか' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -48,4 +48,4 @@
 
 <br>
 
-<%= link_to '新しいtodo作成', new_post_path %>
+<%= link_to '新しいtodo作成', new_post_path, class: "btn btn-sm btn-primary" %>
