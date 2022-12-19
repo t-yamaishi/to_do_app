@@ -75,7 +75,7 @@ Rails.application.configure do
     password: ENV['PASSWORD'],
     #user_name: Rails.application.credentials.gmail[:user_name],  #Gmailアドレス（credentials.yml.encに記載）
     #password: Rails.application.credentials.gmail[:password],  #アプリパスワード（credentials.yml.encに記載）
-    authentication: :login,
+    authentication: 'plain',
     openssl_verify_mode: 'none',
     enable_starttls_auto: true
   }
