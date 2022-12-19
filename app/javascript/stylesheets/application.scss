@@ -1,14 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 
 header {
-  height: 40px;
+  height: 45px;
+  background-color: #DDDDDD;
+
 }
 
 footer {
   width: 100%;
   position: absolute;
   bottom: 0;
-  height: 40px;
+  height: 50px;
+  background-color: #DDDDDD;
 }
 
 table {
@@ -21,5 +24,6 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  background-color: #DDFFFF;
 
 }
