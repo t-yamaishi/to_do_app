@@ -75,8 +75,12 @@ Rails.application.configure do
     password: ENV['PASSWORD'],
     #user_name: Rails.application.credentials.gmail[:user_name],  #Gmailアドレス（credentials.yml.encに記載）
     #password: Rails.application.credentials.gmail[:password],  #アプリパスワード（credentials.yml.encに記載）
-    authentication: :login
+    authentication: :login,
+    openssl_verify_mode: 'none',
+    enable_starttls_auto: true
   }
+
+    config.action_mailer.raise_delivery_errors = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
