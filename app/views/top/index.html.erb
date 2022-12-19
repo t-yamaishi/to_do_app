@@ -19,6 +19,7 @@
     </tr>
   </tbody>
 </table>
-
-<td><%= link_to 'アプリの中身を見る(ゲストログイン機能)', users_guest_sign_in_path, class: "btn btn-sm btn-primary", method: :post  %></td>
+<% unless user_signed_in? %>
+  <td><%= link_to 'アプリの中身を見る(ゲストログイン機能)', users_guest_sign_in_path, class: "btn btn-sm btn-primary", method: :post  %></td>
+<% end %>
 <td><%= link_to 'アプリの中身を見る(ゲストログイン機能(管理者))', users_admin_guest_sign_in_path, class: "btn btn-sm btn-primary", method: :post  %></td>
