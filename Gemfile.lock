@@ -300,6 +300,7 @@ GEM
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
+    tlsmail (0.0.1)
     turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -376,6 +377,7 @@ DEPENDENCIES
   selenium-webdriver (>= 4.0.0.rc1)
   spring (= 4.1.0)
   spring-commands-rspec
+  tlsmail
   turbolinks (~> 5)
   tzinfo-data
   unicorn
