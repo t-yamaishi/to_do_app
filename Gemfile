@@ -27,8 +27,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'rspec-rails'
-  # gem 'pry-rails'
-  # gem 'spring-commands-rspec'
+  gem 'pry-rails'
+  gem 'spring-commands-rspec'
   gem 'launchy'
   gem 'rexml'
   gem 'capistrano', '3.16.0'
