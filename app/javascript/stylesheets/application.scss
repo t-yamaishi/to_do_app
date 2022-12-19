@@ -1,29 +1,43 @@
 @import '~bootstrap/scss/bootstrap';
 
 header {
-  height: 45px;
+  padding: 20px 0;
   background-color: #DDDDDD;
 
 }
 
 footer {
+  padding: 20px 0;
   width: 100%;
+  background-color: #DDDDDD;
   position: absolute;
   bottom: 0;
-  height: 50px;
-  background-color: #DDDDDD;
 }
 
 table {
   margin: 0 auto;
 }
 
+html {
+  min-height: 100vh;
+  position: relative;
+  /*←相対位置*/
+  padding-bottom: 120px;
+  /*←footerの高さ*/
+  box-sizing: border-box;
+  /*←全て含めてmin-height:100vhに*/
+}
+
+
 body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  // height: 100%;
+  // width: 100%;
+  // margin: 0;
+  // padding: 0;
   text-align: center;
   background-color: #DDFFFF;
+}
 
+#error_explanation ul li {
+  list-style: none;
 }

@@ -62,23 +62,38 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "to_do_app_production"
 
-  name = ENV['USER_NAME']
-  pass = ENV['PASSWORD']
+
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = {  host: 'http://54.178.154.241/' }
-  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.default_url_options = {  host: 'http://54.178.154.241/' }
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   domain: 'gmail.com',
+  #   port: 587,
+  #   user_name: ENV['USER_NAME'],
+  #   password: ENV['PASSWORD'],
+  #   authentication: 'plain',
+  #   openssl_verify_mode: 'none',
+  #   enable_starttls_auto: true
+  # }
+
+  config.action_mailer.default_url_options = { host: 'http://54.178.154.241/' }
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+  # SendGrid の場合
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    domain: 'gmail.com',
-    port: 587,
-    user_name: name,
-    password: pass,
-    authentication: 'plain',
-    openssl_verify_mode: 'none',
-    enable_starttls_auto: true
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    #:domain => 'heroku.com',
+    :user_name => 'apikey',
+    :password => ENV['SENDGRID_API_KEY'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
     config.action_mailer.raise_delivery_errors = true

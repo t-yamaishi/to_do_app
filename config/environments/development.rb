@@ -76,16 +76,32 @@ Rails.application.configure do
 
   #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   #config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   domain: 'gmail.com',
+  #   port: 587,
+  #   user_name: ENV['USER_NAME'],
+  #   password: ENV['PASSWORD'],
+  #   #user_name: Rails.application.credentials.gmail[:user_name],  #Gmailアドレス（credentials.yml.encに記載）
+  #   #password: Rails.application.credentials.gmail[:password],  #アプリパスワード（credentials.yml.encに記載）
+  #   authentication: :login
+  # }
+
+  config.action_mailer.perform_caching = false
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  # SendGrid の場合
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    domain: 'gmail.com',
-    port: 587,
-    user_name: ENV['USER_NAME'],
-    password: ENV['PASSWORD'],
-    #user_name: Rails.application.credentials.gmail[:user_name],  #Gmailアドレス（credentials.yml.encに記載）
-    #password: Rails.application.credentials.gmail[:password],  #アプリパスワード（credentials.yml.encに記載）
-    authentication: :login
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :domain => 'localhost',
+    :user_name => 'apikey',
+    :password => ENV['SENDGRID_API_KEY'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 end
