@@ -62,6 +62,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "to_do_app_production"
 
+  name = ENV['USER_NAME']
+  pass = ENV['PASSWORD']
+
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = {  host: 'http://54.178.154.241/' }
@@ -71,9 +74,9 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
     port: 587,
-    user_name: ENV['USER_NAME'],
-    password: ENV['PASSWORD'],
-    authentication: :login,
+    user_name: name,
+    password: pass,
+    authentication: 'plain',
     openssl_verify_mode: 'none',
     enable_starttls_auto: true
   }
