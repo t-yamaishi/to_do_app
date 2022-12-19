@@ -22,6 +22,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'factory_bot_rails'
 
 gem 'faker'
+gem 'spring'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -30,7 +31,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring-commands-rspec'
   gem 'launchy'
-  gem 'rexml'
+  # gem 'rexml'
   gem 'capistrano', '3.16.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -38,7 +39,7 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
-  gem 'factory_bot_rails'
+  # gem 'factory_bot_rails'
 end
 
 group :development do
@@ -59,7 +60,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'devise-i18n'
-gem 'rexml'
+# gem 'rexml'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 gem 'ransack'
