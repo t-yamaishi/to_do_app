@@ -84,8 +84,8 @@ Rails.application.configure do
     port: 587,
     user_name: ENV['USER_NAME'],
     password: ENV['PASSWORD'],
-    user_name: Rails.application.credentials.gmail[:user_name],  #Gmailアドレス（credentials.yml.encに記載）
-    password: Rails.application.credentials.gmail[:password],  #アプリパスワード（credentials.yml.encに記載）
+    # user_name: Rails.application.credentials.gmail[:user_name],  #Gmailアドレス（credentials.yml.encに記載）
+    # password: Rails.application.credentials.gmail[:password],  #アプリパスワード（credentials.yml.encに記載）
     authentication: :login
   }
 
