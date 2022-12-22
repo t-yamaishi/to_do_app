@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
-        registrations: 'users/registrations',
-        sessions: 'users/sessions'
-}
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     post 'users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
@@ -18,7 +18,5 @@ Rails.application.routes.draw do
   resources :posts
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

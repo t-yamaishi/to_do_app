@@ -5,7 +5,7 @@ RSpec.describe 'タグ機能', type: :system do
   end
   describe 'タグ登録' do
     context 'adminユーザー' do
-      it '新規タグ登録、編集、削除'do
+      it '新規タグ登録、編集、削除' do
         visit new_user_session_path
         fill_in 'Eメール', with: 'xxx@xxx.com'
         fill_in 'パスワード', with: 'xxx@xxx.com'
@@ -30,10 +30,10 @@ RSpec.describe 'タグ機能', type: :system do
 
   describe 'アクセス制限' do
     before do
-      @user=FactoryBot.create(:non_admin_user)
+      @user = FactoryBot.create(:non_admin_user)
     end
     context '一般ユーザー' do
-      it 'タグ機能にアクセスできない'do
+      it 'タグ機能にアクセスできない' do
         visit new_user_session_path
         fill_in 'Eメール', with: 'yyy@yyy.com'
         fill_in 'パスワード', with: 'yyy@yyy.com'

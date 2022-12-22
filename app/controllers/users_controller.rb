@@ -3,8 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to posts_path
-    end
+    redirect_to posts_path unless @user == current_user
   end
 end

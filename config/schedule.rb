@@ -5,7 +5,7 @@
 
 # Example:
 #
-#set :output, "/path/to/my/cron_log.log"
+# set :output, "/path/to/my/cron_log.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -18,10 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-
-
-
-
 
 # env :PATH, ENV['PATH']
 # set :output, './log/cron.log'
@@ -38,11 +34,9 @@
 set :output, './log/cron.log'
 require File.expand_path(File.dirname(__FILE__) + '/environment')
 set :path_env, ENV['PATH']
-rails_env = ENV['RAILS_ENV'] || :development
 set :environment, :production
 job_type :runner, "cd :path && PATH=':path_env' bin/rails runner -e :environment ':task' :output"
 
-
-every 1.minutes do
-  runner "Post.deadline_check"
+every 10.minutes do
+  runner 'Post.deadline_check'
 end

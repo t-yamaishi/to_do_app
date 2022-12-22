@@ -43,19 +43,19 @@ RSpec.describe 'ユーザー機能', type: :system do
     end
   end
 
-    describe 'アクセス制限' do
-      before do
-        @user=FactoryBot.create(:non_admin_user)
-      end
-        context '一般ユーザー' do
-          it '他人の投稿にアクセスできない'do
-            visit new_user_session_path
-            fill_in 'Eメール', with: 'yyy@yyy.com'
-            fill_in 'パスワード', with: 'yyy@yyy.com'
-            click_button 'ログイン'
-            visit user_path(@admin_user.id)
-            expect(page).to have_content 'ToDo一覧'
-          end
-        end
+  describe 'アクセス制限' do
+    before do
+      @user = FactoryBot.create(:non_admin_user)
     end
+    context '一般ユーザー' do
+      it '他人の投稿にアクセスできない' do
+        visit new_user_session_path
+        fill_in 'Eメール', with: 'yyy@yyy.com'
+        fill_in 'パスワード', with: 'yyy@yyy.com'
+        click_button 'ログイン'
+        visit user_path(@admin_user.id)
+        expect(page).to have_content 'ToDo一覧'
+      end
+    end
+  end
 end

@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[show edit update destroy]
   before_action :authenticate_user!
-
 
   def index
     search
@@ -9,9 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    unless @post.user_id == current_user.id
-      redirect_to posts_path
-    end
+    redirect_to posts_path unless @post.user_id == current_user.id
   end
 
   def new
@@ -19,9 +16,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    unless @post.user_id == current_user.id
-      redirect_to posts_path
-    end
+    redirect_to posts_path unless @post.user_id == current_user.id
   end
 
   def create
@@ -29,16 +24,15 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      redirect_to @post, notice: "新しいToDoが作成されました"
+      redirect_to @post, notice: '新しいToDoが作成されました'
     else
       render :new
     end
-
   end
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: "ToDoが編集されました"
+      redirect_to @post, notice: 'ToDoが編集されました'
     else
       render :edit
     end
@@ -46,22 +40,20 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: "ToDoが削除されました。"
+    redirect_to posts_url, notice: 'ToDoが削除されました。'
   end
 
-
-
   private
-    def search
-      @q = current_user.posts.ransack(params[:q])
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:content, :deadline, :tag_ids  )
-    end
+  def search
+    @q = current_user.posts.ransack(params[:q])
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:content, :deadline, :tag_ids)
+  end
 end

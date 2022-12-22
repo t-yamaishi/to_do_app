@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :tag do
-    name { "低" }
+    name { '低' }
   end
 end
