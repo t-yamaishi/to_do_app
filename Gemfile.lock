@@ -68,6 +68,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
+    ast (2.4.2)
     bcrypt (3.1.18)
     bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
@@ -188,6 +189,9 @@ GEM
     nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.20.1)
+    parser (3.0.2.0)
+      ast (~> 2.4.1)
     pg (1.4.5)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -237,6 +241,7 @@ GEM
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
+    rainbow (3.0.0)
     raindrops (0.20.0)
     rake (13.0.6)
     ransack (3.2.1)
@@ -268,6 +273,18 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.11.1)
+    rubocop (1.20.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.9.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.11.0)
+      parser (>= 3.0.1.1)
+    ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -309,6 +326,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.0.0)
     unicorn (6.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -371,6 +389,7 @@ DEPENDENCIES
   ransack
   rexml
   rspec-rails
+  rubocop
   sass-rails (>= 6)
   sassc-rails
   selenium-webdriver (>= 4.0.0.rc1)

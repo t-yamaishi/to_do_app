@@ -3,6 +3,5 @@ class AddColumnPosts < ActiveRecord::Migration[6.1]
     add_column :posts, :deadline, :time
   end
 
-  def down
-  end
+  def down; end
 end

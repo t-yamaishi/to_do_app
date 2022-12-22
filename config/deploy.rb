@@ -1,15 +1,15 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock '~> 3.16.0'
 
-set :application, "to_do_app"
-set :repo_url, "https://github.com/t-yamaishi/to_do_app.git"
+set :application, 'to_do_app'
+set :repo_url, 'https://github.com/t-yamaishi/to_do_app.git'
 
 set :branch, ENV['BRANCH'] || 'main'
 
 set :deploy_to, '/var/www/to_do_app'
 
-set :linked_files, %w{.env config/secrets.yml}
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
+set :linked_files, %w[.env config/secrets.yml]
+set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets public/uploads]
 
 set :keep_releases, 5
 
@@ -18,7 +18,7 @@ set :rbenv_type, :system
 
 set :log_level, :info
 
-set :whenever_roles,        ->{ :app }
+set :whenever_roles, -> { :app }
 
 namespace :deploy do
   desc 'Restart application'
@@ -28,7 +28,7 @@ namespace :deploy do
 
   desc 'Create database'
   task :db_create do
-    on roles(:db) do |host|
+    on roles(:db) do |_host|
       with rails_env: fetch(:rails_env) do
         within current_path do
           execute :bundle, :exec, :rake, 'db:create'
@@ -55,7 +55,6 @@ namespace :deploy do
     end
   end
 end
-
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

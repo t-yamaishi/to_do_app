@@ -1,28 +1,20 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_tag, only: %i[show edit update destroy]
   before_action :authenticate_user!
   before_action :admin_user
 
-
-  # GET /tags
   def index
     @tags = Tag.all
   end
 
-  # GET /tags/1
-  def show
-  end
+  def show; end
 
-  # GET /tags/new
   def new
     @tag = Tag.new
   end
 
-  # GET /tags/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /tags
   def create
     @tag = Tag.new(tag_params)
 
@@ -33,7 +25,6 @@ class TagsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tags/1
   def update
     if @tag.update(tag_params)
       redirect_to @tag, notice: 'タグが編集されました。'
@@ -42,26 +33,22 @@ class TagsController < ApplicationController
     end
   end
 
-  # DELETE /tags/1
   def destroy
     @tag.destroy
     redirect_to tags_url, notice: 'タグが削除されました。'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tag
-      @tag = Tag.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tag_params
-      params.require(:tag).permit(:name)
-    end
+  def set_tag
+    @tag = Tag.find(params[:id])
+  end
 
-    def admin_user
-      unless current_user.admin?
-        redirect_to user_path(current_user.id)
-      end
-    end
+  def tag_params
+    params.require(:tag).permit(:name)
+  end
+
+  def admin_user
+    redirect_to user_path(current_user.id) unless current_user.admin?
+  end
 end
