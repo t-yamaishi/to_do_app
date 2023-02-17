@@ -62,6 +62,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def ajax_index
+    search
+    @posts = @q.result
+    respond_to do |format|
+      format.js { render :index }
+    end
+  end
+
   private
 
   def search
