@@ -41,3 +41,22 @@ body {
 #error_explanation ul li {
   list-style: none;
 }
+
+.simple-calendar {
+  table {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+    table-layout: fixed;
+  }
+}
+
+.today {
+  background: #ffffc0;
+}
+
+#calendar_schedule:hover {
+  color: red;
+  font-weight: bold;
+}
