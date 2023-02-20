@@ -8,20 +8,30 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <header>
-      <%= link_to "ToDomailer", root_path, class: "btn btn-sm btn-secondary" %>
-      <% if user_signed_in? %>
-        <%= link_to "マイページへ", user_path(current_user.id), class: "btn btn-sm btn-secondary" %>
-        <%= link_to "ToDo投稿", posts_path, class: "btn btn-sm btn-secondary" %>
-        <%= link_to "カレンダーを確認", posts_month_path, class: "btn btn-sm btn-secondary" %>
-        <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-sm btn-secondary", method: :delete %>
-      <% else %>
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-sm btn-secondary" %>
-        <%= link_to "ログイン", new_user_session_path , class: "btn btn-sm btn-secondary"%>
-      <% end %>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ToDomailer
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "トップ画面へ", root_path, class: "dropdown-item" %>
+          <% if user_signed_in? %>
+            <%= link_to "マイページへ", user_path(current_user.id), class: "dropdown-item" %>
+            <%= link_to "ToDo投稿", posts_path, class: "dropdown-item" %>
+            <%= link_to "カレンダーを確認", posts_month_path, class: "dropdown-item" %>
+            <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          <% else %>
+            <%= link_to "新規登録", new_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "ログイン", new_user_session_path , class: "dropdown-item"%>
+          <% end %>
+        </div>
+      </div>
+
     </header>
 
     <main>
