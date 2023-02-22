@@ -34,9 +34,10 @@
 set :output, './log/cron.log'
 require File.expand_path(File.dirname(__FILE__) + '/environment')
 set :path_env, ENV['PATH']
-set :environment, :production
+set :environment, :development
 job_type :runner, "cd :path && PATH=':path_env' bin/rails runner -e :environment ':task' :output"
 
 every 1.minutes do
   runner 'Post.deadline_check'
+  runner 'Post.deadline_check_line_push'
 end

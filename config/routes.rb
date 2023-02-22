@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   root 'top#index'
   resources :tags
   get 'users/show'
+  get 'users/disconnect'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: "omniauth_callbacks"
   }
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   end
   get 'posts/ajax_index'
   get 'posts/month'
+
   resources :users, only: [:show]
   resources :posts
 

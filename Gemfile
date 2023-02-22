@@ -47,6 +47,12 @@ gem "simple_calendar", "~> 2.0"
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'line-bot-api'
+
+gem 'omniauth-line'
+
+gem 'omniauth-rails_csrf_protection'
+
 group :development, :test do
   gem 'bcrypt_pbkdf'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
