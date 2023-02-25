@@ -1,0 +1,2 @@
+$(" #this_tag_<%= @tag.id %>").replaceWith("<%= j render 'tags/edit', tag: @tag %>");
+$("#notice").html("<%= j flash[:notice] %>");

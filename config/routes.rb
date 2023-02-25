@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'top#index'
   resources :tags
-  get 'users/show'
+  #get 'users/show'
   get 'users/disconnect'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

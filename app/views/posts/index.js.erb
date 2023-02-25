@@ -1,3 +1,14 @@
 $("#posts_area").html("<%= j(render 'posts/posts_index', { posts: @posts }) %>");
 $("input").val('');
+$('#post_deadline_1i').val('');
+$('#post_deadline_2i').val('');
+$('#post_deadline_3i').val('');
+$('#post_deadline_4i').val('');
+$('#post_deadline_5i').val('');
+$('input[name="post[tag_ids][]"]').removeAttr('checked').prop('checked', false).change();
 $("#notice").html("<%= j flash[:notice] %>");
+
+$(".modal").remove();
+$(".modal-backdrop").remove();
+$("body").removeClass("modal-open");
+$("#modal_area").html("<%= j(render 'posts/month', { posts: @posts, post: @post }) %>");

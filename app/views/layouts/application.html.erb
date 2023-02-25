@@ -24,6 +24,7 @@
             <%= link_to "マイページへ", user_path(current_user.id), class: "dropdown-item" %>
             <%= link_to "ToDo投稿", posts_path, class: "dropdown-item" %>
             <%= link_to "カレンダーを確認", posts_month_path, class: "dropdown-item" %>
+            <%= link_to "タグを作成する", tags_path, class: "dropdown-item" %>
             <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           <% else %>
             <%= link_to "新規登録", new_user_registration_path, class: "dropdown-item" %>

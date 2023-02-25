@@ -1,4 +1,6 @@
-<%= form_with(url: tags_path, scope: :tag, local: false) do |form| %>
+<h3>タグを編集</h3>
+
+<%= form_with(model: tag, local: false) do |form| %>
 
   <div class="field">
     <%= form.label :name %>
@@ -6,6 +8,6 @@
   </div>
 
   <div class="actions">
-    <%= form.button "登録する" %>
+    <%= form.submit %>
   </div>
 <% end %>

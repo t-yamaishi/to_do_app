@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  has_many :tags, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]

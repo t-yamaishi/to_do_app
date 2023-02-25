@@ -1,10 +1,9 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  before_action :admin_user
 
   def index
-    @tags = Tag.all
+    @tags = current_user.tags
   end
 
   def show; end
@@ -13,29 +12,43 @@ class TagsController < ApplicationController
     @tag = Tag.new
   end
 
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.js { render :edit }
+    end
+  end
 
   def create
     @tag = Tag.new(tag_params)
-
-    if @tag.save
-      redirect_to @tag, notice: 'タグが作成されました。'
-    else
-      render :new
+    @tags = Tag.all
+    @tag.user_id = current_user.id
+    respond_to do |format|
+      if @tag.save
+        format.js { render :index }
+      else
+        format.html { redirect_to tags_path, notice: '投稿できませんでした...' }
+      end
     end
   end
 
   def update
-    if @tag.update(tag_params)
-      redirect_to @tag, notice: 'タグが編集されました。'
-    else
-      render :edit
+    @tags = Tag.all
+    respond_to do |format|
+      if @tag.update(tag_params)
+        format.js { render :index }
+      else
+        flash.now[:notice] = 'タグの編集に失敗しました'
+        format.js { render :edit }
+      end
     end
   end
 
   def destroy
+    @tags = Tag.all
     @tag.destroy
-    redirect_to tags_url, notice: 'タグが削除されました。'
+    respond_to do |format|
+      format.js { render :index }
+    end
   end
 
   private
@@ -48,7 +61,4 @@ class TagsController < ApplicationController
     params.require(:tag).permit(:name)
   end
 
-  def admin_user
-    redirect_to user_path(current_user.id) unless current_user.admin?
-  end
 end

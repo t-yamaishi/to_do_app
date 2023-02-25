@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   def index
     search
     @posts = @q.result
-    @post = Post.new
   end
 
   def show
@@ -32,10 +31,9 @@ class PostsController < ApplicationController
     @post.start_time = @post.deadline
     respond_to do |format|
       if @post.save
-        format.html{redirect_to posts_month_path}
         format.js { render :index }
       else
-        format.html { redirect_to post_path(@post), notice: '投稿できませんでした...' }
+        format.html { redirect_to posts_path, notice: '投稿できませんでした...' }
       end
     end
   end
@@ -47,7 +45,6 @@ class PostsController < ApplicationController
       if @post.update(post_params)
         @post.update(start_time: @post.deadline)
         flash.now[:notice] = 'コメントが編集されました'
-        format.html{redirect_to posts_month_path}
         format.js { render :index }
       else
         flash.now[:notice] = 'コメントの編集に失敗しました'
@@ -62,7 +59,6 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       flash.now[:notice] = 'コメントが削除されました'
-      format.html{redirect_to posts_month_path}
       format.js { render :index }
     end
   end
@@ -91,6 +87,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :deadline, :status, :tag_ids)
+    params.require(:post).permit(:content, :deadline, :status, {tag_ids: []})
   end
 end

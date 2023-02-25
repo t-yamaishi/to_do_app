@@ -22,9 +22,13 @@
   </div>
 
   <div class="tag">
-    <%= form.label :tag %>
+    <%= form.label :tag %>:
     <label for="tag_check.">
-      <%= form.collection_select :tag_ids, Tag.all, :id, :name %>
+    <% if current_user.tags.all[0].nil? %>
+      <%= link_to 'タブを作る', tags_path %>
+    <% else %>
+      <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name ) %>
+    <% end %>
     </label>
   </div>
 
