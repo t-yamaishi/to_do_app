@@ -18,7 +18,7 @@ class TagsController < ApplicationController
     @tag = current_user.tags.build(tag_params)
     @tags = current_user.tags
     respond_to do |format|
-      if @tag.save!
+      if @tag.save
         flash.now[:notice] = 'タグを作成しました'
         format.js { render :index }
       else
@@ -30,7 +30,7 @@ class TagsController < ApplicationController
   def update
     @tags = Tag.all
     respond_to do |format|
-      if @tag.update!(tag_params)
+      if @tag.update(tag_params)
         flash.now[:notice] = 'タグを更新しました'
         format.js { render :index }
       else

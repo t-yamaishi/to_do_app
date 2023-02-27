@@ -12,4 +12,4 @@ $("#notice").html("<%= j flash[:notice] %>");
 $(".modal").remove();
 $(".modal-backdrop").remove();
 $("body").removeClass("modal-open");
-$("#modal_area").html("<%= j(render 'posts/month', { posts: @posts, post: @post }) %>");
+$("#calendar_area").html("<%= j(render 'posts/month', { posts: @posts, post: @post }) %>");

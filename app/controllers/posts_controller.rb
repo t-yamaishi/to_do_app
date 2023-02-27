@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post.start_time = @post.deadline
     @posts = @q.result
     respond_to do |format|
-      if @post.save!
+      if @post.save
         flash.now[:notice] = 'ToDoが作成されました'
         format.js { render :index }
       else
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def update
     @posts = @q.result
     respond_to do |format|
-      if @post.update!(post_params)
+      if @post.update(post_params)
         @post.update!(start_time: @post.deadline)
         flash.now[:notice] = 'ToDoが編集されました'
         format.js { render :index }
