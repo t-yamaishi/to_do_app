@@ -33,8 +33,8 @@ class PostsController < ApplicationController
   def update
     @posts = @q.result
     respond_to do |format|
-      if @post.update(post_params)
-        @post.update(start_time: @post.deadline)
+      if @post.update!(post_params)
+        @post.update!(start_time: @post.deadline)
         flash.now[:notice] = 'ToDoが編集されました'
         format.js { render :index }
       else
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
 
   def destroy
     @posts = @q.result
-    @post.destroy
+    @post.destroy!
     respond_to do |format|
       flash.now[:notice] = 'ToDoが削除されました'
       format.js { render :index }

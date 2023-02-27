@@ -1,2 +1,2 @@
-$(" #this_post_<%= @post.id %>").replaceWith("<%= j render 'posts/form', post: @post %>");
+$(" #this_post_<%= @post.id %>").replaceWith("<%= j render 'posts/edit_form', post: @post %>");
 $("#notice").html("<%= j flash[:notice] %>");

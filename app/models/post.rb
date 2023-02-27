@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings, source: :tag
   validates :content, { presence: true }
+  validates :content, length: { minimum: 1, maximum: 10 }
   enum status: { 未実施: 0, 実施: 1 }
 
   def self.deadline_check
