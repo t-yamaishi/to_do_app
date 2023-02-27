@@ -22,7 +22,7 @@ class Post < ApplicationRecord
       }
   end
 
-  def self.push(post)
+  def self.line_push(post)
     message={
         type: 'text',
         text: "#{post.content}が実施されていません。"
@@ -31,13 +31,11 @@ class Post < ApplicationRecord
     response = Post.client.push_message(user_id, message)
   end
 
-
   def self.deadline_check_line_push
     Post.all.each do |post|
       if post.user.uid? && post.deadline? && (post.status = 0) && ((Time.now.strftime('%Y-%m-%d %H:%M')) == (post.deadline.strftime('%Y-%m-%d %H:%M')))
-        Post.push(post)
+        Post.line_push(post)
       end
     end
   end
-
 end

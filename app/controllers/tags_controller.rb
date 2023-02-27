@@ -1,32 +1,28 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[show edit update destroy]
+  before_action :set_tag, only: %i[edit update destroy]
   before_action :authenticate_user!
 
   def index
     @tags = current_user.tags
-  end
-
-  def show; end
-
-  def new
     @tag = Tag.new
   end
 
   def edit
     respond_to do |format|
+      flash.now[:notice] = 'タグ編集中です'
       format.js { render :edit }
     end
   end
 
   def create
-    @tag = Tag.new(tag_params)
-    @tags = Tag.all
-    @tag.user_id = current_user.id
+    @tag = current_user.tags.build(tag_params)
+    @tags = current_user.tags
     respond_to do |format|
-      if @tag.save
+      if @tag.save!
+        flash.now[:notice] = 'タグを作成しました'
         format.js { render :index }
       else
-        format.html { redirect_to tags_path, notice: '投稿できませんでした...' }
+        format.js { render :error }
       end
     end
   end
@@ -34,19 +30,20 @@ class TagsController < ApplicationController
   def update
     @tags = Tag.all
     respond_to do |format|
-      if @tag.update(tag_params)
+      if @tag.update!(tag_params)
+        flash.now[:notice] = 'タグを更新しました'
         format.js { render :index }
       else
-        flash.now[:notice] = 'タグの編集に失敗しました'
-        format.js { render :edit }
+        format.js { render :error }
       end
     end
   end
 
   def destroy
     @tags = Tag.all
-    @tag.destroy
+    @tag.destroy!
     respond_to do |format|
+      flash.now[:notice] = 'タグを削除しました'
       format.js { render :index }
     end
   end
@@ -54,11 +51,10 @@ class TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = current_user.tags.find(params[:id])
   end
 
   def tag_params
     params.require(:tag).permit(:name)
   end
-
 end

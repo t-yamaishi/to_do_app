@@ -6,6 +6,7 @@ $('#post_deadline_3i').val('');
 $('#post_deadline_4i').val('');
 $('#post_deadline_5i').val('');
 $('input[name="post[tag_ids][]"]').removeAttr('checked').prop('checked', false).change();
+$("#error_explanation").remove();
 $("#notice").html("<%= j flash[:notice] %>");
 
 $(".modal").remove();

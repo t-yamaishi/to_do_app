@@ -1,4 +1,8 @@
-<%= form_with(url: posts_path, scope: :post, local: false) do |form| %>
+<%= form_with(model: post, local: false) do |form| %>
+  <div id="error_messages">
+    <%= render 'posts/error_messages', model: form.object %>
+  </div>
+
   <div class="field">
     <%= form.label :content %>
     <%= form.text_field :content, placeholder: 'todoを入力' %>

@@ -1,7 +1,6 @@
 <h3>タグを編集</h3>
 
 <%= form_with(model: tag, local: false) do |form| %>
-
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, placeholder: 'タグを入力' %>

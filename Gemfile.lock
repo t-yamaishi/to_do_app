@@ -415,6 +415,7 @@ DEPENDENCIES
   ed25519
   factory_bot_rails
   faker
+  kaminari
   launchy
   letter_opener_web
   line-bot-api

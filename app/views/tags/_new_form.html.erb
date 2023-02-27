@@ -1,4 +1,7 @@
-<%= form_with(url: tags_path, scope: :tag, local: false) do |form| %>
+<%= form_with(model: tag, local: false) do |form| %>
+  <div id="error_messages">
+    <%= render 'tags/error_messages', model: form.object %>
+  </div>
 
   <div class="field">
     <%= form.label :name %>

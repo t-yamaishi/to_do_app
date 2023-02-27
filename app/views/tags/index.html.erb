@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-
 <h1>タグ</h1>
 
-<%= render  partial: 'tags/form' %>
+<%= render  partial: 'tags/new_form', locals: {tag: @tag} %>
 
 <div id="tags_area">
   <%= render partial: 'tags/tags_index', locals: { tags: @tags } %>

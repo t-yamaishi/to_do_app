@@ -53,6 +53,8 @@ gem 'omniauth-line'
 
 gem 'omniauth-rails_csrf_protection'
 
+gem 'kaminari'
+
 group :development, :test do
   gem 'bcrypt_pbkdf'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -72,7 +74,6 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'web-console', '>= 4.1.0'
-  # gem 'spring'
   gem 'letter_opener_web'
   gem 'rubocop', require: false
 end
