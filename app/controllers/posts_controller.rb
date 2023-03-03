@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
-  before_action :search, only: %i[index create update destroy]
-  before_action :authenticate_user!
+  before_action :search, only: %i[index create update destroy ajax_index]
 
   def index
-    @posts = @q.result.page(params[:page]).per(20)
+    @posts = @q.result.page(params[:page]).per(10)
     @post = Post.new
   end
 
@@ -25,7 +24,7 @@ class PostsController < ApplicationController
         flash.now[:notice] = 'ToDoが作成されました'
         format.js { render :index }
       else
-        format.js { render :error }
+        format.js { render :error_for_create }
       end
     end
   end
@@ -38,7 +37,7 @@ class PostsController < ApplicationController
         flash.now[:notice] = 'ToDoが編集されました'
         format.js { render :index }
       else
-        format.js { render :error }
+        format.js { render :error_for_update }
       end
     end
   end
@@ -53,14 +52,13 @@ class PostsController < ApplicationController
   end
 
   def ajax_index
-    search
     @posts = @q.result
     respond_to do |format|
       format.js { render :index }
     end
   end
 
-  def month
+  def month_calendar
     @posts = current_user.posts
     @post = Post.new
   end

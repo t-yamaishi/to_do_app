@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ToDoApp</title>
+    <title>ToDoMailer</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
-
   <body>
     <header>
-
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ToDomailer
@@ -23,7 +19,7 @@
           <% if user_signed_in? %>
             <%= link_to "マイページへ", user_path(current_user.id), class: "dropdown-item" %>
             <%= link_to "ToDo投稿", posts_path, class: "dropdown-item" %>
-            <%= link_to "カレンダーを確認", posts_month_path, class: "dropdown-item" %>
+            <%= link_to "カレンダーを確認", posts_month_calendar_path, class: "dropdown-item" %>
             <%= link_to "タグを作成する", tags_path, class: "dropdown-item" %>
             <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           <% else %>
@@ -32,9 +28,7 @@
           <% end %>
         </div>
       </div>
-
     </header>
-
     <main>
       <% if notice %>
         <p class="alert alert-notice"><%= notice %></p>
@@ -42,11 +36,8 @@
       <% if alert %>
         <p class="alert alert-error"><%= alert %></p>
       <% end %>
-
-
       <%= yield %>
     </main>
-
     <footer>
       ©️ 2022 ToDoMailer by Yamaishi Tamaki
     </footer>

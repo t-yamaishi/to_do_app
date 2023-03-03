@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 <h1>ToDo作成</h1>
-
 <%= render partial: 'posts/new_form', locals: {post: @post} %>
-
 <h1>ToDo一覧</h1>
-
 <%= search_form_for @q, url: posts_ajax_index_path, remote: true do |f| %>
   ToDo内容:<%= f.text_field :content_cont, placeholder: 'todo内容を入力' %>
   締切日:<%= f.date_field :deadline_gteq,
               include_blank: true %>〜
   <%= f.date_field :deadline_lteq,
               include_blank: true %>
-  タグ:<%= f.collection_select :taggings_tag_id_eq, Tag.all, :id, :name, include_blank: true %>
-  実施/未実施:<%= f.select :status_eq, Post.statuses.keys.map.with_index { |k, i| [k, i] }, { include_blank: true } %>
+  タグ:<%= f.collection_select :taggings_tag_id_eq, current_user.tags, :id, :name, include_blank: true %>
+  実施/未実施:<%= f.select :status_eq, Post.statuses.keys.map.with_index { |key, index| [key, index] }, { include_blank: true } %>
   <%= f.button "検索" %>
 <% end %><br><br>
-
 <div id="posts_area">
-  <%= render partial: 'posts/posts_index', locals: { posts: @posts } %>
+  <%= render partial: 'posts/posts_list', locals: { posts: @posts } %>
 </div>
-
 <%= paginate @posts %>

@@ -1,0 +1,29 @@
+<%= month_calendar events: posts do |date, posts| %>
+  <%= date.day %><br>
+  <%posts.each do |post| %>
+    <%= post.status %><br>
+    <% post.tags.each do |post_tag|%>
+      <%= post_tag.name %><br>
+    <% end %>
+    <%= link_to '編集', edit_post_path(post), remote: true %>
+    <div class="post-content" id = "this_post_<%= post.id %>"></div>
+  <%end%>
+<% end %>
+<div class="container">
+  <button type="button" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal2">新規作成</button>
+</div>
+<div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4>新規作成画面</h4>
+      </div>
+      <div class="modal-body" >
+        <label><%= render partial: 'posts/new_form', locals: { post: post }%></label>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,34 +1,29 @@
 <%= form_with(model: post, local: false) do |form| %>
-  <div id="error_messages">
-    <%= render 'posts/error_messages', model: form.object %>
+  <div id="error_messages_for_create">
+    <%= render 'layouts/error_messages', model: form.object %>
   </div>
-
   <div class="field">
     <%= form.label :content %>
     <%= form.text_field :content, placeholder: 'todoを入力' %>
   </div>
-
   <div class="field">
     <%= form.label :deadline %>
     <%= form.datetime_select :deadline, include_blank: true %>
   </div>
-
   <div class="tag">
     <%= form.label :tag %>:
     <label for="tag_check.">
-    <% if current_user.tags.all[0].nil? %>
-      <%= link_to 'タブを作る', tags_path %>
+    <% if current_user.tags[0].nil? %>
+      <%= link_to 'タグを作る', tags_path %>
     <% else %>
-      <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name ) %>
+      <%= form.collection_check_boxes(:tag_ids, current_user.tags, :id, :name ) %>
     <% end %>
     </label>
   </div>
-
   <div class = "status">
     <%= form.label :status %>
     <%= form.select :status, Post.statuses.keys.to_a %>
   </div>
-
   <div class="actions">
     <%= form.button "登録する"%>
   </div>

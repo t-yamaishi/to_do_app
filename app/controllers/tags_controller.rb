@@ -1,6 +1,5 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[edit update destroy]
-  before_action :authenticate_user!
 
   def index
     @tags = current_user.tags
@@ -28,7 +27,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tags = Tag.all
+    @tags = current_user.tags
     respond_to do |format|
       if @tag.update(tag_params)
         flash.now[:notice] = 'タグを更新しました'
@@ -40,7 +39,7 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    @tags = Tag.all
+    @tags = current_user.tags
     @tag.destroy!
     respond_to do |format|
       flash.now[:notice] = 'タグを削除しました'
