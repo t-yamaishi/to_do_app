@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     search
     @posts = @q.result
+    @post = Post.new
   end
 
   def show
@@ -17,30 +18,48 @@ class PostsController < ApplicationController
 
   def edit
     redirect_to posts_path unless @post.user_id == current_user.id
+    respond_to do |format|
+      flash.now[:notice] = 'コメントの編集中'
+      format.js { render :edit }
+    end
   end
 
   def create
+    search
+    @posts = @q.result
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
-    if @post.save
-      redirect_to @post, notice: '新しいToDoが作成されました'
-    else
-      render :new
+    respond_to do |format|
+      if @post.save
+        format.js { render :index }
+      else
+        format.html { redirect_to post_path(@post), notice: '投稿できませんでした...' }
+      end
     end
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to @post, notice: 'ToDoが編集されました'
-    else
-      render :edit
+    search
+    @posts = @q.result
+    respond_to do |format|
+      if @post.update(post_params)
+        flash.now[:notice] = 'コメントが編集されました'
+        format.js { render :index }
+      else
+        flash.now[:notice] = 'コメントの編集に失敗しました'
+        format.js { render :edit }
+      end
     end
   end
 
   def destroy
+    search
+    @posts = @q.result
     @post.destroy
-    redirect_to posts_url, notice: 'ToDoが削除されました。'
+    respond_to do |format|
+      flash.now[:notice] = 'コメントが削除されました'
+      format.js { render :index }
+    end
   end
 
   private
@@ -54,6 +73,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :deadline, :tag_ids)
+    params.require(:post).permit(:content, :deadline, :status, :tag_ids)
   end
 end
