@@ -1,54 +1,59 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[show edit update destroy]
-  before_action :authenticate_user!
-  before_action :admin_user
+  before_action :set_tag, only: %i[edit update destroy]
 
   def index
-    @tags = Tag.all
-  end
-
-  def show; end
-
-  def new
+    @tags = current_user.tags
     @tag = Tag.new
   end
 
-  def edit; end
+  def edit
+    respond_to do |format|
+      flash.now[:notice] = 'タグ編集中です'
+      format.js { render :edit }
+    end
+  end
 
   def create
-    @tag = Tag.new(tag_params)
-
-    if @tag.save
-      redirect_to @tag, notice: 'タグが作成されました。'
-    else
-      render :new
+    @tag = current_user.tags.build(tag_params)
+    @tags = current_user.tags
+    respond_to do |format|
+      if @tag.save
+        flash.now[:notice] = 'タグを作成しました'
+        format.js { render :index }
+      else
+        format.js { render :error }
+      end
     end
   end
 
   def update
-    if @tag.update(tag_params)
-      redirect_to @tag, notice: 'タグが編集されました。'
-    else
-      render :edit
+    @tags = current_user.tags
+    respond_to do |format|
+      if @tag.update(tag_params)
+        flash.now[:notice] = 'タグを更新しました'
+        format.js { render :index }
+      else
+        format.js { render :error }
+      end
     end
   end
 
   def destroy
-    @tag.destroy
-    redirect_to tags_url, notice: 'タグが削除されました。'
+    @tags = current_user.tags
+    @tag.destroy!
+    respond_to do |format|
+      flash.now[:notice] = 'タグを削除しました'
+      format.js { render :index }
+    end
   end
 
   private
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = current_user.tags.find(params[:id])
   end
 
   def tag_params
     params.require(:tag).permit(:name)
-  end
-
-  def admin_user
-    redirect_to user_path(current_user.id) unless current_user.admin?
   end
 end

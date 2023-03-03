@@ -1,0 +1,12 @@
+<%= form_with(model: tag, local: false) do |form| %>
+  <div id="error_messages">
+    <%= render 'layouts/error_messages', model: form.object %>
+  </div>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: 'タグを入力' %>
+  </div>
+  <div class="actions">
+    <%= form.button "登録する" %>
+  </div>
+<% end %>

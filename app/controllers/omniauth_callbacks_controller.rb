@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def line; basic_action end
-
   private
+
   def basic_action
     @omniauth = request.env["omniauth.auth"]
     if @omniauth.present?
@@ -18,11 +18,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(:user, @profile)
     end
     flash[:notice] = "ログインしました"
-    redirect_to root_path
+    redirect_to user_path(current_user.id)
   end
 
   def fake_email(uid, provider)
     "#{auth.uid}-#{auth.provider}@example.com"
   end
-
 end
