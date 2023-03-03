@@ -29,8 +29,10 @@ class PostsController < ApplicationController
     @posts = @q.result
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.start_time = @post.deadline
     respond_to do |format|
       if @post.save
+        format.html{redirect_to posts_month_path}
         format.js { render :index }
       else
         format.html { redirect_to post_path(@post), notice: '投稿できませんでした...' }
@@ -43,7 +45,9 @@ class PostsController < ApplicationController
     @posts = @q.result
     respond_to do |format|
       if @post.update(post_params)
+        @post.update(start_time: @post.deadline)
         flash.now[:notice] = 'コメントが編集されました'
+        format.html{redirect_to posts_month_path}
         format.js { render :index }
       else
         flash.now[:notice] = 'コメントの編集に失敗しました'
@@ -58,8 +62,22 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       flash.now[:notice] = 'コメントが削除されました'
+      format.html{redirect_to posts_month_path}
       format.js { render :index }
     end
+  end
+
+  def ajax_index
+    search
+    @posts = @q.result
+    respond_to do |format|
+      format.js { render :index }
+    end
+  end
+
+  def month
+    @posts = current_user.posts
+    @post = Post.new
   end
 
   private

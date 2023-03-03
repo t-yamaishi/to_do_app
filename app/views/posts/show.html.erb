@@ -14,5 +14,6 @@
   <%= @post.status %>
 </p>
 
-<%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-primary" %> |
+<%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-primary" %>
+<%= link_to 'カレンダーに行く', posts_month_path, class: "btn btn-sm btn-primary" %>
 <%= link_to '戻る', posts_path, class: "btn btn-sm btn-primary"%>
