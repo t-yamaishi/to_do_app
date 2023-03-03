@@ -27,6 +27,8 @@ Devise.setup do |config|
 
   config.mailer_sender = ENV['USER_NAME'] # 'please-change-me-at-config-initializers-devise@example.com'
 
+
+  config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
