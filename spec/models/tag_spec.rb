@@ -1,20 +1,15 @@
-# require 'rails_helper'
-# RSpec.describe 'Tagモデル', type: :model do
-#   describe 'バリデーションのテスト' do
-#     context 'contentが空の場合' do
-#       it 'バリデーションにひっかかる' do
-#         tag = Tag.new(name: '')
-#         expect(tag).not_to be_valid
-#       end
-#     end
-#   end
-
-#   describe 'タグ登録' do
-#     context '入力に不足がない時' do
-#       it 'タグ登録が成功する' do
-#         tag = Tag.new(name: '低')
-#         expect(tag).to be_valid
-#       end
-#     end
-#   end
-# end
+require 'rails_helper'
+RSpec.describe 'Tagモデル', type: :model do
+  describe 'nameバリデーションのテスト' do
+    it 'nameが空の場合バリデーションにひっかかる' do
+      tag = Tag.new(name: '')
+      expect(tag).not_to be_valid
+      expect(tag.errors.full_messages).to include("名前を入力してください")
+    end
+    it '文字数が10文字以上のためバリデーションにひっかかる' do
+      tag = Tag.new(name: 'テスト' * 10)
+      expect(tag).not_to be_valid
+      expect(tag.errors.full_messages).to include("名前は10文字以内で入力してください")
+    end
+  end
+end
