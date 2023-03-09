@@ -21,7 +21,7 @@ class TagsController < ApplicationController
         flash.now[:notice] = 'タグを作成しました'
         format.js { render :index }
       else
-        format.js { render :error }
+        format.js { render :error_for_create }
       end
     end
   end
@@ -33,7 +33,7 @@ class TagsController < ApplicationController
         flash.now[:notice] = 'タグを更新しました'
         format.js { render :index }
       else
-        format.js { render :error }
+        format.js { render :error_for_update }
       end
     end
   end

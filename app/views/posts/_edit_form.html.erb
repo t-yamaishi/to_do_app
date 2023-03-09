@@ -5,7 +5,7 @@
   </div>
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_field :content, placeholder: 'todoを入力' %>
+    <%= form.text_field :content, placeholder: 'todoを入力', id: "edit_post_test" %>
   </div>
   <div class="field">
     <%= form.label :deadline %>
@@ -26,6 +26,6 @@
     <%= form.select :status, Post.statuses.keys.to_a %>
   </div>
   <div class="actions">
-    <%= form.button "登録する"%>
+    <%= form.button "更新する"%>
   </div>
 <% end %>
