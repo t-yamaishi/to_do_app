@@ -1,8 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'ユーザー機能', type: :system do
-  before do
-    @admin_user = FactoryBot.create(:user)
-  end
+  let!(:admin_user) { FactoryBot.create(:user) }
   describe 'ログインログアウト機能' do
     it 'ログアウトが成功'do
       visit new_user_session_path
@@ -13,6 +11,7 @@ RSpec.describe 'ユーザー機能', type: :system do
       click_on 'ログアウト'
       expect(page).to have_content 'ログアウトしました'
     end
+
     it 'ログインができ、管理ユーザーは管理画面にアクセスできる' do
       visit new_user_session_path
       fill_in 'Eメール', with: 'xxx@xxx.com'
@@ -45,15 +44,13 @@ RSpec.describe 'ユーザー機能', type: :system do
   end
 
   describe 'アクセス制限' do
-    before do
-      @user = FactoryBot.create(:non_admin_user)
-    end
+    let!(:non_admin_user) { FactoryBot.create(:non_admin_user) }
     it '他人の投稿にアクセスできない' do
       visit new_user_session_path
       fill_in 'Eメール', with: 'yyy@yyy.com'
       fill_in 'パスワード', with: 'yyy@yyy.com'
       click_button 'ログイン'
-      visit user_path(@admin_user.id)
+      visit user_path(admin_user.id)
       expect(page).to have_content 'ToDo一覧'
     end
   end

@@ -1,8 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'タグ機能', type: :system do
-  before do
-    @admin_user = FactoryBot.create(:user)
-  end
+  let!(:admin_user) { FactoryBot.create(:user) }
   describe 'タグ機能' do
     it '新規タグ登録、編集、削除' do
       visit new_user_session_path
