@@ -35,7 +35,7 @@
   - JQuery
   - Bootstrap
 - Infra
-  - AWS(VPC,EC2,EIP)
+  - AWS(VPC,EC2)
 - DB
   - PostgreSQL
 
