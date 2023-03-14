@@ -1,61 +1,46 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
-  before_action :search, only: %i[index create update destroy ajax_index]
+  before_action :search, only: %i[index create update destroy]
 
   def index
-    @posts = @q.result.page(params[:page]).per(10)
     @post = Post.new
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render :index }
+    end
   end
 
   def edit
     redirect_to posts_path unless @post.user_id == current_user.id
-    respond_to do |format|
-      flash.now[:notice] = 'ToDo編集中です'
-      format.js { render :edit }
-    end
+    flash.now[:notice] = 'ToDo編集中です'
+    render :edit
   end
 
   def create
     @post = current_user.posts.build(post_params)
     @post.start_time = @post.deadline
-    @posts = @q.result
-    respond_to do |format|
-      if @post.save
-        flash.now[:notice] = 'ToDoが作成されました'
-        format.js { render :index }
-      else
-        format.js { render :error_for_create }
-      end
+    if @post.save
+      flash.now[:notice] = 'ToDoが作成されました'
+      render :index
+    else
+      render :error_for_create
     end
   end
 
   def update
-    @posts = @q.result
-    respond_to do |format|
-      if @post.update(post_params)
-        @post.update!(start_time: @post.deadline)
-        flash.now[:notice] = 'ToDoが編集されました'
-        format.js { render :index }
-      else
-        format.js { render :error_for_update }
-      end
+    if @post.update(post_params)
+      @post.update!(start_time: @post.deadline)
+      flash.now[:notice] = 'ToDoが編集されました'
+      render :index
+    else
+      render :error_for_update
     end
   end
 
   def destroy
-    @posts = @q.result
     @post.destroy!
-    respond_to do |format|
-      flash.now[:notice] = 'ToDoが削除されました'
-      format.js { render :index }
-    end
-  end
-
-  def ajax_index
-    @posts = @q.result
-    respond_to do |format|
-      format.js { render :index }
-    end
+    flash.now[:notice] = 'ToDoが削除されました'
+    render :index
   end
 
   def month_calendar
@@ -67,10 +52,11 @@ class PostsController < ApplicationController
 
   def search
     @q = current_user.posts.ransack(params[:q])
+    @posts = @q.result.page(params[:page]).per(3)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def post_params

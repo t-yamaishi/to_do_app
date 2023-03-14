@@ -2,7 +2,7 @@
 <h1>ToDo作成</h1>
 <%= render partial: 'posts/new_form', locals: {post: @post} %>
 <h1>ToDo一覧</h1>
-<%= search_form_for @q, url: posts_ajax_index_path, remote: true do |f| %>
+<%= search_form_for @q, url: posts_path, remote: true do |f| %>
   ToDo内容:<%= f.text_field :content_cont, placeholder: 'todo内容を入力' %>
   締切日:<%= f.date_field :deadline_gteq,
               include_blank: true %>〜
@@ -15,4 +15,3 @@
 <div id="posts_area">
   <%= render partial: 'posts/posts_list', locals: { posts: @posts } %>
 </div>
-<%= paginate @posts %>
