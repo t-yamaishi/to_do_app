@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def line_disconnect
-    user = User.find_by(id: current_user.id)
+    user = User.find(id: current_user.id)
     user.update!(provider: nil, uid: nil)
     redirect_to user_path(current_user.id)
   end
