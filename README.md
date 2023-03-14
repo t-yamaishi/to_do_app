@@ -27,17 +27,17 @@
 - Back End
   - ruby 3.0.1
   - rails 6.1.7
-  - Nginx
-  - Unicorn
+  - Nginx 1.22.1
+  - Unicorn 6.1.0
 - Front End
   - HTML
   - CSS
   - JQuery
   - Bootstrap
 - Infra
-  - AWS(VPC,EC2,EIP)
+  - AWS(VPC,EC2,EIP,ALB,ACM,Route53)
 - DB
-  - PostgreSQL
+  - PostgreSQL 11.16
 
 #### 機能
 - サインアップ、ログイン、ログアウト、ユーザー削除

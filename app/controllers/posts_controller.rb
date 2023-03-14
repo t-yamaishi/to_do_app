@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def search
-    @q = current_user.posts.ransack(params[:q])
+    @q = current_user.posts.preload(:tags).ransack(params[:q])
     @posts = @q.result.page(params[:page]).per(10)
   end
 
