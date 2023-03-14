@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
   def search
     @q = current_user.posts.ransack(params[:q])
-    @posts = @q.result.page(params[:page]).per(3)
+    @posts = @q.result.page(params[:page]).per(10)
   end
 
   def set_post
