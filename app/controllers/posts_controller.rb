@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     render :index
   end
 
-  def month_calendar
+  def make_month_calendar
     @posts = current_user.posts
     @post = Post.new
   end
