@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'top#index'
   get 'users/line_disconnect'
-  get 'posts/month_calendar'
+  get 'posts/make_month_calendar'
+  post '/callback' => 'linebot#callback'
   resources :tags, only:[:index, :edit, :create, :update, :destroy]
   resources :posts, only:[:index, :edit, :create, :update, :destroy]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

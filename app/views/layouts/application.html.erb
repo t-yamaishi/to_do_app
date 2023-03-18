@@ -19,7 +19,7 @@
           <% if user_signed_in? %>
             <%= link_to "マイページへ", user_path(current_user.id), class: "dropdown-item" %>
             <%= link_to "ToDo投稿", posts_path, class: "dropdown-item" %>
-            <%= link_to "カレンダーを確認", posts_month_calendar_path, class: "dropdown-item" %>
+            <%= link_to "カレンダーを確認", posts_make_month_calendar_path, class: "dropdown-item" %>
             <%= link_to "タグを作成する", tags_path, class: "dropdown-item" %>
             <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           <% else %>
