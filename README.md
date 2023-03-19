@@ -46,6 +46,7 @@
 - 投稿検索機能
 - LINEログイン
 - LINE通知
+- LINEリプライ機能
 - ページネーション
 - カレンダー機能
 - メール機能(gmail)
@@ -66,6 +67,8 @@
   - omniauth-line'
   - omniauth-rails_csrf_protection
 - line通知
+  - line-bot-api
+- lineリプライ機能
   - line-bot-api
 - ページネーション
   - kaminari
